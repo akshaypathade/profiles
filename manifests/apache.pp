@@ -16,25 +16,22 @@ $filename        = 'index1.html',
  default_vhost => false,
   }
 
-    file{ ["${docroot}/first","${docroot}/second","${docroot}/third"] :
+    file{ ["${docroot}/first","${docroot}/second"] :
         ensure => directory,
         }
 
- file{'/var/www/first/index1.html':
+ file{'/var/www/first/index.html':
         ensure     => present,
         source => "puppet:///modules/profiles/index1.html",
      }
 
-    file{'/var/www/second/index1.html':
+    file{'/var/www/second/index.html':
     ensure           => present,
     source => "puppet:///modules/profiles/index2.html",
 
       }
 
-      file{'/var/www/third/index1.html' :
-          ensure  => present,
-          source => "puppet:///modules/profiles/index3.html",
- }
+     
 
           ::apache::vhost{'website_1':
             port          => $port,
